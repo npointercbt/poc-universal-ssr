@@ -1,0 +1,19 @@
+# serverless.yml
+
+plugins:
+  - serverless-offline
+
+service: poc-universal-ssr
+
+provider:
+  name: aws
+  runtime: nodejs6.10
+  stage: dev
+  region: us-east-1
+
+functions:
+  app:
+    handler: index.handler
+    events:
+      - http: ANY /
+      - http: 'ANY {proxy+}'
